@@ -1,1 +1,1 @@
-# ClassManagmentSystem
+# Class Managment System
