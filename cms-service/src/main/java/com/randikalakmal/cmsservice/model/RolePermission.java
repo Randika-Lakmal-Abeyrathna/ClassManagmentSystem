@@ -1,45 +1,26 @@
 package com.randikalakmal.cmsservice.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
+@Data
 @Entity
-@Table(name = "role_permission")
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class RolePermission {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Integer id;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "role_id", nullable = false)
+    private int id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id",referencedColumnName = "id")
     private Role role;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "permission_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "permission_id",referencedColumnName = "id")
     private Permission permission;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-    public Permission getPermission() {
-        return permission;
-    }
-
-    public void setPermission(Permission permission) {
-        this.permission = permission;
-    }
-
 }
